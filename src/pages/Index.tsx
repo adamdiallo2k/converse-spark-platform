@@ -1,5 +1,4 @@
 import { ChatContainer } from "@/components/ChatContainer";
-import { ApiKeySettings } from "@/components/ApiKeySettings";
 
 const Index = () => {
   return (
@@ -10,8 +9,6 @@ const Index = () => {
           Start a conversation with our AI assistant
         </p>
       </div>
-      <ApiKeySettings />
-      <div className="h-8" /> {/* Spacer */}
       <ChatContainer />
     </div>
   );

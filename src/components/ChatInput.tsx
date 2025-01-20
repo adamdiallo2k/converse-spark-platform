@@ -4,16 +4,16 @@ import { SendHorizontal } from "lucide-react";
 import { useState, KeyboardEvent } from "react";
 
 interface ChatInputProps {
-  onSend: (message: string) => void;
+  onSendMessage: (message: string) => void;
   disabled?: boolean;
 }
 
-export const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
+export const ChatInput = ({ onSendMessage, disabled }: ChatInputProps) => {
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
     if (message.trim()) {
-      onSend(message.trim());
+      onSendMessage(message.trim());
       setMessage("");
     }
   };
@@ -26,7 +26,7 @@ export const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
   };
 
   return (
-    <div className="flex items-center gap-2 p-4 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="flex items-center gap-2 p-4">
       <Input
         placeholder="Type a message..."
         value={message}
@@ -45,3 +45,5 @@ export const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
     </div>
   );
 };
+
+export type { ChatInputProps };

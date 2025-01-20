@@ -1,33 +1,22 @@
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-
 interface ChatMessageProps {
+  role: 'user' | 'assistant';
   content: string;
-  isUser: boolean;
-  timestamp: Date;
 }
 
-export const ChatMessage = ({ content, isUser, timestamp }: ChatMessageProps) => {
+export const ChatMessage = ({ role, content }: ChatMessageProps) => {
+  const isUser = role === 'user';
+  
   return (
-    <div
-      className={cn(
-        "flex w-full animate-fade-in",
-        isUser ? "justify-end" : "justify-start"
-      )}
-    >
+    <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
       <div
-        className={cn(
-          "relative max-w-[80%] rounded-2xl px-4 py-2 shadow-sm",
-          isUser
-            ? "bg-chat-user text-primary"
-            : "bg-chat-bot text-primary border"
-        )}
+        className={`max-w-[80%] rounded-lg px-4 py-2 ${
+          isUser ? 'bg-primary text-primary-foreground' : 'bg-muted'
+        }`}
       >
         <p className="text-sm">{content}</p>
-        <span className="absolute -bottom-5 text-xs text-muted-foreground">
-          {format(timestamp, "HH:mm")}
-        </span>
       </div>
     </div>
   );
 };
+
+export type { ChatMessageProps };

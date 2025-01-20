@@ -1,3 +1,5 @@
+import { toast } from "@/hooks/use-toast";
+
 export const sendMessage = async (message: string): Promise<string> => {
   try {
     // Get API keys from localStorage

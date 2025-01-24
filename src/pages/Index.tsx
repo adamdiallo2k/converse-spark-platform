@@ -2,14 +2,16 @@ import { ChatContainer } from "@/components/ChatContainer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 bg-secondary/30">
-      <div className="w-full max-w-2xl mb-8 text-center">
-        <h1 className="text-4xl font-semibold mb-2">Welcome to Chat</h1>
-        <p className="text-muted-foreground">
-          Start a conversation with our AI assistant
-        </p>
+    <div className="min-h-screen w-full bg-[#343541]">
+      <div className="max-w-5xl mx-auto px-4 py-6">
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-semibold text-white mb-2">PDF Chat Assistant</h1>
+          <p className="text-gray-400">
+            Ask questions about your PDF documents
+          </p>
+        </div>
+        <ChatContainer />
       </div>
-      <ChatContainer />
     </div>
   );
 };

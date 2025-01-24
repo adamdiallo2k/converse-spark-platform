@@ -16,13 +16,11 @@ export const ChatContainer = () => {
   const handleSendMessage = async (message: string) => {
     if (!message.trim()) return;
 
-    // Add user message
     const userMessage: Message = { role: 'user', content: message };
     setMessages((prev) => [...prev, userMessage]);
     setIsLoading(true);
 
     try {
-      // Get bot response
       const response = await sendMessage(message);
       const botMessage: Message = { role: 'assistant', content: response };
       setMessages((prev) => [...prev, botMessage]);
@@ -34,20 +32,28 @@ export const ChatContainer = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="bg-[#404150] rounded-lg shadow-xl overflow-hidden">
       <div className="h-[600px] flex flex-col">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.map((message, index) => (
-            <ChatMessage
-              key={index}
-              role={message.role}
-              content={message.content}
-            />
-          ))}
+          {messages.length === 0 ? (
+            <div className="flex items-center justify-center h-full">
+              <p className="text-gray-400 text-center">
+                Start a conversation by asking a question about your PDF
+              </p>
+            </div>
+          ) : (
+            messages.map((message, index) => (
+              <ChatMessage
+                key={index}
+                role={message.role}
+                content={message.content}
+              />
+            ))
+          )}
           {isLoading && <TypingIndicator />}
         </div>
-        <div className="border-t p-4">
-          <ChatInput onSendMessage={handleSendMessage} />
+        <div className="border-t border-gray-600 bg-[#343541] p-4">
+          <ChatInput onSendMessage={handleSendMessage} disabled={isLoading} />
         </div>
       </div>
     </div>
